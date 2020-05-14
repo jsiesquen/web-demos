@@ -43,13 +43,6 @@ export default function CardList() {
             <div className="wrapper">
                 <div className="grid">
                     {
-                        // cardlistData.map(({id, accountName, icon, followers, today}) => (
-                        //     <Card key={id} 
-                        //             accountName={accountName}
-                        //             icon={icon}
-                        //             followers={followers}
-                        //             today={today} />
-                        // ))
                         cardlistData.map(cardData => (
                             <Card key={cardData.id} {...cardData} />
                         ))

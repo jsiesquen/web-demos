@@ -1,8 +1,6 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    color: var(--baseFont);
-    background: var(--baseBack);
 }
 
 :root {
@@ -21,6 +19,12 @@ body {
     --cardTitle: #6f717e;
     --switchSpinner: white;
     --switchBack: #5f616d;
+}
+
+main {
+    color: var(--baseFont);
+    background: var(--baseBack);
+    min-height: 100vh;
 }
 
 .wrapper {
