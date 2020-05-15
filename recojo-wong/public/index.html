@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+  xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce">
+<head>
+  <meta name="language" content="es-PE" />
+  <meta name="country" content="PER" />
+  <meta name="currency" content="S/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#f01612" />
+  <link rel="icon" href="https://wongfood.vteximg.com.br/arquivos/wong_icon_32.png?v=636110939404970000" />
+  <link rel="icon" href="https://wongfood.vteximg.com.br/arquivos/wong_icon_32.png?v=636110939404970000" sizes="32x32" />
+  <link rel="apple-touch-icon-precomposed" href="https://wongfood.vteximg.com.br/arquivos/wong_icon_152.png?v=636110939411530000" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="description" content="Bienvenido a esta nueva experiencia online. Encuentra todo lo que buscas, con el servicio de siempre, desde la comodidad de tu casa." />
+  <title>Recojo de Pedidos – Wong</title>
+  <script language="javascript" src="https://io.vtex.com.br/front-libs/jquery/1.8.3/jquery-1.8.3.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://wongfood.vteximg.com.br/scripts/vtex.ajax.wait.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://wongfood.vteximg.com.br/scripts/vtex.common.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://io.vtex.com.br/rc/rc.js?v=1.4.1573.2263" type="text/javascript"></script>
+  <script language="javascript"
+    src="https://io.vtex.com.br/portal-ui/1.14.0/scripts/vtex-events-all.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript"
+    src="https://io.vtex.com.br/front-libs/front-i18n/0.7.2/vtex-i18n.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript"
+    src="https://io.vtex.com.br/front-libs/front-utils/3.0.8/underscore-extensions.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript"
+    src="https://io.vtex.com.br/front-libs/dustjs-linkedin/2.3.5/dust-core-2.3.5.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://io.vtex.com.br/vtex.js/2.11.2/vtex.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://io.vtex.com.br/vtex-id-ui/3.19.3/vtexid-jquery.min.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="https://www.wong.pe/files/global.css" />
+  <link href="https://www.wong.pe/files/custom-nes.css" rel="stylesheet" type="text/css" />
+  <link href="https://www.wong.pe/files/wfd-global.css" rel="stylesheet" type="text/css" />
+  <script src="https://www.wong.pe/files/lodash.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/store.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/manifest.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/vendor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/fizzmod.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/jquery-prototype-extended.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    let productShelfTemplate
+    productShelfTemplate = 'e67ddf91-9e4f-4d0f-8d7e-f2c9d4746738'
+  </script>
+  <script src="https://www.wong.pe/files/janis.conf.js" charset="utf-8"></script>
+  <style>
+    .shipping-selector__container .shipping-preference__close {
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body id="institutional" class="sugerencias new-wfd">
+  <div class="ajax-content-loader" rel="/no-cache/callcenter/disclaimer"></div><!-- GLOBAL TEMPLATES -->
+  <!-- Overlays -->
+  <div id="delivery-window" class="overlay" style="display: none;">
+    <div class="overlay__wrapper"><button type="button" class="overlay__close">
+        <div class="font-icn cross"></div>
+      </button>
+      <div class="overlay__content">
+        <div class="delivery-window">
+          <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+              <path class="spinner-loader-circlebg"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+              <path id="spinner-loader-circle" class="preload-loader-circle"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+            </svg></div>
+          <div class="delivery-window__title">Horarios de Entregas</div>
+          <div class="delivery-window__subtitle">Estos son los horarios de entrega disponible para tu distrito:</div>
+          <div class="delivery-window__shipping-tabs"></div>
+          <div class="delivery-window__current-time">
+            <div class="delivery-window__month"></div>
+            <div class="delivery-window__year"></div>
+          </div>
+          <div class="delivery-window__tables-wrapper"></div>
+          <div class="delivery-window__legend-wrapper">
+            <div class="delivery-window__legend delivery-window__legend--available">
+              <div class="font-icn truck"></div>
+              <div class="text">Disponible</div>
+            </div>
+            <div class="delivery-window__legend delivery-window__legend--unavailable">
+              <div class="font-icn truck"></div>
+              <div class="text">No disponible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="store-selector" class="overlay" style="display: none;">
+    <div class="overlay__wrapper">
+      <div class="overlay__content">
+        <div class="store-selector">
+          <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+              <path class="spinner-loader-circlebg"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+              <path id="spinner-loader-circle" class="preload-loader-circle"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+            </svg></div>
+          <div class="store-selector__title">Seleccione la tienda</div><select class="store-selector__select">
+            <option value="T103">Aurora</option>
+            <option value="T104">Benavides</option>
+          </select><button class="btn primary store-selector__submit">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="product-quickview" class="overlay-wrapper" style="display: none;">
+    <div class="v-center">
+      <div class="h-center">
+        <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+            <path class="spinner-loader-circlebg"
+              d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+            <path id="spinner-loader-circle" class="preload-loader-circle"
+              d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+          </svg></div>
+        <div class="overlay">
+          <div class="overlay-background"></div>
+          <div class="overlay-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="added-to-cart" class="overlay-wrapper" style="display: none;">
+    <div class="v-center">
+      <div class="h-center">
+        <div class="overlay">
+          <div class="overlay-background"></div>
+          <div class="overlay-content">
+            <div class="icn added-to-cart"></div>
+            <div class="action-wrapper box-shadow-5">
+              <div class="text">¡Producto agregado al carrito!</div>
+              <div class="actions clear-fix"><button type="button" class="btn red-border overlay__close pull-left"><span
+                    class="font-icn point-arrow-left"></span><span class="text">Seguir comprando</span></button><a
+                  href="/cart" class="btn red checkout pull-right"><span class="text">Finalizar compra</span><span
+                    class="font-icn point-arrow-right"></span></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="add-shop-list" class="overlay" style="display: none;">
+    <div class="overlay__wrapper"><button type="button" class="overlay__close">
+        <div class="font-icn cross"></div>
+      </button>
+      <div class="overlay__content">
+        <div class="add-shop-list">
+          <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+              <path class="spinner-loader-circlebg"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+              <path id="spinner-loader-circle" class="preload-loader-circle"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+            </svg></div>
+          <div class="add-shop-list__title"><span class="font-icn lists"></span><span>Agregar a una lista</span></div>
+          <div class="add-shop-list__create create-shop-list"><input type="text" placeholder="Crear una lista nueva"
+              class="create-shop-list__input--list-name" /><button type="button"
+              class="create-shop-list__submit btn red-border">
+              <div class="text">Crear</div>
+            </button></div>
+          <div class="add-shop-list__lists-wrapper">
+            <div class="add-shop-list__lists"></div>
+            <div class="add-shop-list__actions"><button type="button"
+                class="add-shop-list__action add-shop-list__action--save-changes add-shop-list__action--disabled btn red">
+                <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+                    <path class="spinner-loader-circlebg"
+                      d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z">
+                    </path>
+                    <path id="spinner-loader-circle" class="preload-loader-circle"
+                      d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z">
+                    </path>
+                  </svg></div><span class="font-icn check"></span><span class="text">Guardar</span>
+              </button></div>
+          </div>
+          <div class="add-shop-list__no-lists">
+            <div class="icn annotator"></div>
+            <div class="add-shop-list__no-lists-message add-shop-list__no-lists-message--gray">
+              Todavía no tienes ninguna lista creada.
+            </div>
+            <div class="add-shop-list__no-lists-message">
+              Crea una nueva lista para comenzar.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="store-locality" class="overlay" style="display: none;">
+    <div class="overlay__wrapper">
+      <div class="overlay__background"></div>
+      <div class="overlay__content">
+        <div class="logo-wrapper">
+          <div class="icn logo big"></div><span>¡Bienvenido/a a Wong!</span>
+        </div>
+        <div class="store-selector-wrapper box-shadow-5">
+          <div class="store-selector"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 102.27 84.61">
+              <defs>
+                <style>
+                  #map-with-marker-svg .cls-1 {
+                    fill: #dbdbdb;
+                  }
+
+                  #map-with-marker-svg .cls-2 {
+                    fill: #333;
+                  }
+                </style>
+              </defs>
+              <title>Mapa</title>
+              <g id="map-with-marker-svg" data-name="Map with marker">
+                <path class="cls-1"
+                  d="M12.23,67.44a.95.95,0,0,1-.8-1.45l.41-.64a.95.95,0,1,1,1.6,1L13,67A1,1,0,0,1,12.23,67.44ZM15.07,63a.95.95,0,0,1-.8-1.45l.41-.64a.95.95,0,1,1,1.6,1l-.41.64A.94.94,0,0,1,15.07,63Zm2.84-4.48a.95.95,0,0,1-.8-1.45l.41-.64a.95.95,0,1,1,1.6,1l-.41.64A1,1,0,0,1,17.91,58.49ZM20.74,54a.95.95,0,0,1-.8-1.45l.41-.64a.95.95,0,1,1,1.6,1l-.41.64A.94.94,0,0,1,20.74,54Zm2.84-4.48a.95.95,0,0,1-.8-1.45l.41-.64a.95.95,0,0,1,1.6,1l-.41.64A1,1,0,0,1,23.58,49.54Z" />
+                <path class="cls-1"
+                  d="M4.15,64.28a.95.95,0,0,1-.79-1.46l.22-.34a.95.95,0,1,1,1.59,1l-.22.34A.94.94,0,0,1,4.15,64.28Zm2.67-4.17A.93.93,0,0,1,6.31,60,1,1,0,0,1,6,58.66L6.43,58A.95.95,0,1,1,8,59l-.41.64A1,1,0,0,1,6.82,60.12Zm2.86-4.46a.93.93,0,0,1-.51-.15,1,1,0,0,1-.29-1.31l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,9.68,55.66Zm2.86-4.46A.93.93,0,0,1,12,51a1,1,0,0,1-.29-1.31l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,12.54,51.19Zm2.86-4.46a.95.95,0,0,1-.8-1.46l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,15.4,46.73Zm2.86-4.46a.93.93,0,0,1-.51-.15,1,1,0,0,1-.29-1.31l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,18.26,42.27Zm2.86-4.46a.93.93,0,0,1-.51-.15,1,1,0,0,1-.29-1.31l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,21.12,37.81ZM24,33.35a.93.93,0,0,1-.51-.15,1,1,0,0,1-.29-1.31l.41-.64a.95.95,0,1,1,1.59,1l-.41.64A1,1,0,0,1,24,33.35Z" />
+                <path class="cls-1"
+                  d="M4.55,46.91a.95.95,0,0,1-.79-1.47l.42-.63a.95.95,0,0,1,1.57,1l-.42.63A.94.94,0,0,1,4.55,46.91ZM7.49,42.5A.95.95,0,0,1,6.7,41l.42-.63a.95.95,0,1,1,1.57,1l-.42.63A.94.94,0,0,1,7.49,42.5Zm2.94-4.41a.95.95,0,0,1-.79-1.47l.42-.63a.95.95,0,0,1,1.57,1l-.42.63A.94.94,0,0,1,10.43,38.1Zm2.94-4.41a.95.95,0,0,1-.79-1.47l.42-.63a.95.95,0,0,1,1.57,1l-.42.63A.94.94,0,0,1,13.37,33.69Zm2.94-4.41a.95.95,0,0,1-.79-1.47l.42-.63a.95.95,0,1,1,1.57,1l-.42.63A.94.94,0,0,1,16.31,29.28Zm2.94-4.41a.95.95,0,0,1-.79-1.47l.42-.63a.95.95,0,0,1,1.57,1l-.42.63A.94.94,0,0,1,19.25,24.87Zm2.94-4.41A.95.95,0,0,1,21.4,19l.42-.63a.95.95,0,0,1,1.57,1L23,20A.94.94,0,0,1,22.19,20.46Z" />
+                <path class="cls-1"
+                  d="M18.55,14.5a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M14.15,21.44a.94.94,0,0,1-.67-.28L13,20.63a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62ZM6.66,13.95A.94.94,0,0,1,6,13.67l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M8.83,26.42a.94.94,0,0,1-.67-.28l-.54-.54A.95.95,0,0,1,9,24.27l.54.54a.95.95,0,0,1-.67,1.62ZM5.08,22.67a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M41.68,12.22a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62ZM37.93,8.47a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M42.32,24.6a.94.94,0,0,1-.67-.28L41.36,24a.95.95,0,1,1,1.34-1.34L43,23a.95.95,0,0,1-.67,1.62Zm-3.5-3.5a.94.94,0,0,1-.67-.28l-.54-.54A.95.95,0,0,1,39,18.95l.54.54a.95.95,0,0,1-.67,1.62Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54A.95.95,0,0,1,35.2,15.2l.54.54a.95.95,0,0,1-.67,1.62ZM31.32,13.6a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34L32,12a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M38.82,32.74a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62ZM35.07,29a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54A.95.95,0,0,1,35.07,29Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M45.89,53.21a.94.94,0,0,1-.67-.28l-.54-.54A.95.95,0,0,1,46,51.06l.54.54a.95.95,0,0,1-.67,1.62Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62ZM38.4,45.71a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62ZM34.65,42a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54A.95.95,0,0,1,34.65,42Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54A.95.95,0,1,1,31,36.07l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-1"
+                  d="M36,57.49a1,1,0,0,1-.67-.28l-.54-.54a.95.95,0,0,1,1.34-1.34l.54.54A.95.95,0,0,1,36,57.49Zm-3.75-3.75a.94.94,0,0,1-.67-.28l-.54-.54a.95.95,0,1,1,1.34-1.34l.54.54a.95.95,0,0,1-.67,1.62Z" />
+                <path class="cls-2"
+                  d="M96.2,57.28a1.14,1.14,0,0,0-1.35,1.82c2.35,1.74,5.15,4.61,5.15,8.37,0,8.2-13,14.87-29.09,14.87S41.82,75.67,41.82,67.48c0-3.76,2.8-6.63,5.15-8.37a1.14,1.14,0,0,0-1.35-1.82c-4,2.94-6.07,6.47-6.07,10.2,0,0,0,.06,0,.09L29,65.23V2.91l22.4,5a27.27,27.27,0,0,0-7.75,24v0a27.07,27.07,0,0,0,2,6.63c3.08,7.65,9.78,18.86,24.2,28.86a1.21,1.21,0,0,0,.67.2,1.14,1.14,0,0,0,.65-.2C85.85,57.27,92.55,45.89,95.58,38.16a27.29,27.29,0,0,0,1.64-5.09c.18-.76.25-1.18.25-1.18a1,1,0,0,0,0-.19A27.3,27.3,0,0,0,70.55,0,27.15,27.15,0,0,0,53.4,6.08a1.12,1.12,0,0,0-.43-.2L28.38.44a1.61,1.61,0,0,0-1.19,0L1.33,6.17A1.16,1.16,0,0,0,0,7.28V72a1.14,1.14,0,0,0,1.14,1.14l.25,0,26.41-5.85L39.87,70c2.15,8.39,15,14.65,31,14.65,17.59,0,31.36-7.53,31.36-17.14C102.27,63.75,100.17,60.22,96.2,57.28Zm-.65-30a25.22,25.22,0,0,1-.36,4.24,1.13,1.13,0,0,0,0,.2c0,.17-.09.46-.19.85a25.27,25.27,0,0,1-1.52,4.72c-2.37,6-8.47,17.59-22.92,27.82C57,55.55,50.73,45,47.79,37.66a25,25,0,0,1-1.89-6.11v0a25,25,0,1,1,49.67-4.24ZM2.27,8.28,26.57,2.91V65.23L2.27,70.61Z" />
+                <path class="cls-2"
+                  d="M70.57,41.36a14,14,0,0,0,13.2-18.58,1.14,1.14,0,0,0-2.14.75,11.7,11.7,0,1,1-7-7.15,1.14,1.14,0,1,0,.78-2.13,14,14,0,1,0-4.79,27.11Z" />
+              </g>
+            </svg></div><span>Por favor, selecciona tu Distrito:</span>
+          <div class="input-wrapper">
+            <div class="custom-select"><select id="locality-select">
+                <option value=""></option>
+                <option value="Lima">Lima</option>
+                <option value="Ancón">Ancón</option>
+                <option value="Ate">Ate</option>
+                <option value="Barranco">Barranco</option>
+                <option value="Breña">Breña</option>
+                <option value="Carabayllo">Carabayllo</option>
+                <option value="Chaclacayo">Chaclacayo</option>
+                <option value="Chorrillos">Chorrillos</option>
+                <option value="Cieneguilla">Cieneguilla</option>
+                <option value="Comas">Comas</option>
+                <option value="El Agustino">El Agustino</option>
+                <option value="Independencia">Independencia</option>
+                <option value="Jesus Maria">Jesus Maria</option>
+                <option value="La Molina">La Molina</option>
+                <option value="La Victoria">La Victoria</option>
+                <option value="Lince">Lince</option>
+                <option value="Los Olivos">Los Olivos</option>
+                <option value="Lurigancho">Lurigancho</option>
+                <option value="Lurín">Lurín</option>
+                <option value="Magdalena Del Mar">Magdalena Del Mar</option>
+                <option value="Miraflores">Miraflores</option>
+                <option value="Pachacamac">Pachacamac</option>
+                <option value="Pucusana">Pucusana</option>
+                <option value="Pueblo Libre">Pueblo Libre</option>
+                <option value="Puente Piedra">Puente Piedra</option>
+                <option value="Punta Hermosa">Punta Hermosa</option>
+                <option value="Punta Negra">Punta Negra</option>
+                <option value="Rímac">Rímac</option>
+                <option value="San Bartolo">San Bartolo</option>
+                <option value="San Borja">San Borja</option>
+                <option value="San Isidro">San Isidro</option>
+                <option value="San Juan De Lurigancho">San Juan De Lurigancho</option>
+                <option value="San Juan De Miraflores">San Juan De Miraflores</option>
+                <option value="San Luis">San Luis</option>
+                <option value="San Martín De Porres">San Martín De Porres</option>
+                <option value="San Miguel">San Miguel</option>
+                <option value="Santa Anita">Santa Anita</option>
+                <option value="Santa María Del Mar">Santa María Del Mar</option>
+                <option value="Santa Rosa">Santa Rosa</option>
+                <option value="Santiago De Surco">Santiago De Surco</option>
+                <option value="Surquillo">Surquillo</option>
+                <option value="Villa El Salvador">Villa El Salvador</option>
+                <option value="Villa Maria Del Triunfo">Villa Maria Del Triunfo</option>
+              </select></div><button class="btn gray-border" id="submit-store-locality" disabled="true"><span
+                class="text">Entrar</span><span class="font-icn point-arrow"></span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Custom overlays -->
+  <div id="shipping-preference" class="overlay">
+    <div class="overlay__wrapper">
+      <div class="overlay__content">
+        <div id="shipping-preference-root"></div>
+      </div>
+    </div>
+  </div><!-- /Overlays -->
+  <div id="highlight-background"></div><!-- Preload Screen -->
+  <!-- Preload Screen -->
+  <!-- /GLOBAL TEMPLATES -->
+  <!-- Header -->
+  <div style="display:none">
+    <script>
+      $(document).ready(function () {
+        vtexid.setScope('331050fc-aff5-499c-b6b2-d04d8442c182');
+        vtexid.setScopeName('wongfood');
+        $('body').on('click', '#login', function () {
+          vtexid.start(
+            {
+              returnUrl: '/consultas-sugerencias',
+              userEmail: '',
+              locale: 'es-PE',
+              forceReload: false
+            });
+        });
+      });
+    </script>
+    <div class="ajax-content-loader" rel="/no-cache/user/welcome"></div>
+  </div>
+  <div class="cintillo-sites">
+    <h4 class="cintillo-text">
+      Visita nuestros otros sitios:
+    </h4>
+    <div class="center-cintillo"><a href="https://www.wong.pe/" target="_blank"><span class="wicon wicon-wong"
+          style="width: 34px;height: 35px;"></span></a><a href="https://www.metro.pe/"
+        target="_blank"><span class="wicon wicon-metro"></span></a><span><a href="http://www.paris.com.pe/"
+          target="_blank"><img src="https://wongfood.vtexassets.com/arquivos/logo-paris-small.png?v=637152452700700000"
+            alt="logo-paris" /></a></span><span><a href="https://www.tarjetacencosud.pe/" target="_blank"><img
+            src="https://wongfood.vtexassets.com/arquivos/LOGO-Tarjeta-62x32-2.png?v=637229955618600000"
+            alt="logo-banco-cencosud" /></a></span></div>
+  </div>
+  <div id="fake-header"></div>
+  <header id="header" class="wrapper">
+    <div class="center">
+      <div class="logo-wrapper">
+        <!-- <a href="/" class="icn logo medium" title="Wong"></a> --><a href="/" class="logo-link" title="Wong"><span
+            class="wicon wicon-wong"></span></a></div>
+      <div class="header-items">
+        <!-- top-nav-wrapper -->
+        <div class="top-nav-wrapper clear-fix">
+          <div class="pull-left"><span class="active-store"><button type="button"
+                class="delivery-window__action--toggle-open">Ver Horarios de Entrega</button><button type="button"
+                class="delivery-window__action--change-store" data-overlay="store-locality">Cambiar</button>
+              <div class="shipping-preference__active-preference"></div>
+            </span></div>
+          <div class="pull-right">
+            
+            <nav class="top-nav">
+              
+              <div class="user-menu">
+                <div class="user-menu__label"><span class="user-menu__label-content">Hola <span
+                      class="user-menu__user-name"></span></span><span
+                    class="wicon--xxs wicon--blanco wicon-down"></span></div>
+                <div class="user-menu__content">
+                  <div class="user-menu__link start-login"><span class="wicon--s wicon--blanco wicon-login"></span>
+                    Iniciar Sesión
+                  </div><a class="user-menu__link" href="/account"><span
+                      class="wicon--s wicon--blanco wicon-datos"></span>
+                    Mis Datos
+                  </a><a class="user-menu__link" href="/account#/mis-compras"><span
+                      class="wicon--s wicon--blanco wicon-compras"></span>
+                    Mis Compras
+                  </a><a class="user-menu__link" href="/account#/mis-listas"><span
+                      class="wicon--s wicon--blanco wicon-lista"></span>
+                    Mis Listas
+                  </a><a class="user-menu__link user-menu__link--logout" href="/no-cache/user/logout"><span
+                      class="wicon--s wicon--blanco wicon-logout"></span>
+                    Cerrar Sesión
+                  </a>
+                </div>
+              </div>
+            </nav><button class="btn repeat-order"><span class="font-icn refresh"></span><span class="text">Repite tu
+                último pedido</span></button>
+          </div>
+        </div><!-- /top-nav-wrapper -->
+        <div class="search-wrapper">
+          <!-- search-autocomplete -->
+          <div class="search-autocomplete-wrapper">
+            <div class="input"><label class="font-icn search" for="search-autocomplete-input"></label><input type="text"
+                id="search-autocomplete-input" value="" placeholder="Encuentra tus productos aquí" /></div>
+            <div class="search-autocomplete-results-wrapper">
+              <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+                  <path class="spinner-loader-circlebg"
+                    d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z">
+                  </path>
+                  <path id="spinner-loader-circle" class="preload-loader-circle"
+                    d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z">
+                  </path>
+                </svg></div>
+              <div class="results-wrapper">
+                <div class="search-text-products clear-fix"></div><a href="/busca/" class="see-all"><span>Ver todos los
+                    resultados</span></a>
+                <div class="search-text-categories">
+                </div>
+              </div>
+              <div class="no-results-wrapper"><span>No se han encontrado resultados</span></div>
+            </div>
+          </div><!-- /search-autocomplete -->
+          <!-- search-by-list -->
+          <div class="search-by-list-wrapper"><button class="search-by-list-button">
+              <!-- <span class="font-icn search-list"></span> --><span
+                class="wicon--s wicon--blanco wicon-busqueda"></span><span class="text">Búsqueda
+                múltiple</span></button>
+            <div class="search-product-list" style="right: 0 !important; left:inherit !important;">
+              <div class="search-product-list__title">
+
+                Escribe aquí tu lista de compras
+
+              </div>
+              <div class="search-product-list__subtitle">
+
+
+
+                Cliquea Enter después de cada item o sepáralos por comas (ej.: arroz,carne,huevos,azúcar).
+
+              </div>
+              <div class="search-product-list__input-wrapper">
+                <div class="search-product-list__list-items"></div><input type="text"
+                  class="search-product-list__search-input" id="search-list-item-input" value="" size="1" />
+              </div>
+              <div class="search-product-list__controls"><button type="button"
+                  class="search-product-list__control search-product-list__control--search btn red-border disabled">Buscar
+                  productos</button><button type="button"
+                  class="search-product-list__control search-product-list__control--reset disabled"><span
+                    class="font-icn cross"></span><span class="text">Borrar todo</span></button></div>
+            </div>
+          </div>
+          <div class="list-links-wrapper food-site"><a href="/busca/?fq=H:6628" class="link link-lists"><span
+                class="wicon--s wicon--blanco wicon-ofertas"></span><span class="text">Ofertas Especiales</span></a>
+          </div><!-- list links -->
+          <div class="list-links-wrapper food-site"><a href="/account#/mis-listas" class="link link-lists">
+              <span class="wicon--s wicon--blanco wicon-lista"></span><span
+                class="text">Mis listas</span></a></div><!-- /list links -->
+          <!-- Catálogo -->
+          <div class="list-links-wrapper food-site catalog"><a href="/catalogos/" class="link link-lists">
+              <span
+                class="wicon--s wicon--blanco wicon-encarte"></span><span class="text">Encartes</span></a></div>
+          <!-- /Catálogo -->
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="cintillo-sites-mobile">
+    <h4 class="cintillo-text-mobile">
+      Visita nuestros otros sitios:
+    </h4>
+    <div class="center-cintillo-mobile"><a href="https://www.wong.pe/" target="_blank"><span class="wicon wicon-wong"
+          style="width: 34px;height: 35px;"></span></a><a href="https://www.metro.pe/"
+        target="_blank"><span class="wicon wicon-metro"></span></a><span><a href="http://www.paris.com.pe/"
+          target="_blank"><img src="https://wongfood.vtexassets.com/arquivos/logo-paris-small.png?v=637152452700700000"
+            alt="logo-paris" /></a></span><span><a href="https://www.tarjetacencosud.pe/" target="_blank"><img
+            src="https://wongfood.vtexassets.com/arquivos/banco-cencosud-scotiabank.png?v=637152452691730000"
+            alt="logo-banco-cencosud" /></a></span></div>
+  </div>
+  <header id="header-mobile" class="header-mobile mobile"><a href="/" class="header-mobile__logo logo" title="Wong"></a>
+    <div class="header-mobile__actions"><button
+        class="header-mobile__action header-mobile__action--search font-icn search-icn-mobile"
+        data-action="search-mobile"><span class="wicon wicon--blanco wicon-lupa"></span></button><button
+        class="header-mobile__action header-mobile__action--cart font-icn cart-icn-mobile"
+        data-action="minicart-mobile"><span class="wicon wicon--blanco wicon-cart"></span></button><button
+        class="header-mobile__action header-mobile__action--menu font-icn menu-icn-mobile"
+        data-action="navigation-mobile"><span class="wicon wicon--blanco wicon-burguer"></span></button></div>
+  </header>
+  <script type="text/javascript">
+    (function () {
+      // Set height of fake header
+      var fakeHeader = $("#fake-header");
+      var header = $("#header");
+
+      fakeHeader.height(header.height());
+
+      //on resize change height
+      $(window).on("resolutionChanged", function () {
+        fakeHeader.height(header.height());
+      });
+    })();
+  </script><!-- /Header -->
+  <!-- Navigation -->
+  <div id="fake-navigation"></div>
+  <div class="navigation wrapper">
+    <div class="center"><button type="button" class="btn red toggle-menu">
+      <span class="text">CATEGORÍAS</span><span
+          class="wicon--xxs wicon--blanco wicon-down"></span></button>
+      <div class="menu menu-nonfood">
+        <div class="categsTop">
+          <div class="categsTop__item"><a href="/frutas-y-verduras"><span>Frutas y Verduras</span></a></div>
+          <div class="categsTop__item"><a href="/carnes-aves-y-pescados"><span>Carnes y Aves</span></a></div>
+          <div class="categsTop__item"><a href="/abarrotes"><span>Abarrotes</span></a></div>
+          <div class="categsTop__item"><a href="/cervezas-vinos-y-licores"><span>Vinos y Licores</span></a></div>
+          <div class="categsTop__item" style="width:9% !important;"><a href="/limpieza"><span>Limpieza</span></a></div>
+          <div class="categsTop__item"><a href="/tecnologia/televisores"><span>Televisores</span></a></div>
+          <div class="categsTop__item"><a href="/electrohogar"><span>Electrohogar</span></a></div>
+          <div class="categsTop__item"><a href="/hogar-y-bazar"><span>Hogar y Bazar</span></a></div>
+        </div>
+      </div><button type="button" class="btn red minicart__action--toggle-open food-site"
+        data-minicart="minicart-navigation"><span class="font-icn cart"></span><span
+          class="wicon--xxs wicon--blanco wicon-down"></span></button><!-- Category filter template -->
+      <!-- Category filter template -->
+      <div class="minicart minicart--navigation box-shadow-2 food-site" id="minicart-navigation">
+        <div class="minicart__alert">
+          <div class="minicart-alert minicart-alert--delivery-window-available"><button type="button"
+              class="minicart-alert__close-alert font-icn cross"></button>
+            <div class="font-icn time"></div>
+            <div class="minicart-alert__text-wrapper">
+              <div class="minicart-alert__text">
+                Termina tu pedido antes de
+                <span class="countdown"></span>
+                para recibir hoy entre las
+                <span class="time-range"></span>
+                *
+              </div>
+              <div class="minicart-alert__note">
+                *o hasta que se agoten los cupos
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="minicart__body">
+          <div class="minicart__empty">
+            <div class="minicart__empty-text">Tu carrito está vacío</div>
+          </div>
+          <div class="minicart__items-wrapper">
+            <div class="minicart__header-wrapper">
+              <div class="minicart__header minicart__header--total">
+                <div class="minicart__totalizer--amount">
+                  Tienes
+                  <span class="value"></span>
+                  ítems
+                </div>
+                <div class="help">Clikea en una burbuja para ver el detalle</div>
+              </div>
+              <div class="minicart__header minicart__header--category">
+                <div class="font-icn-cat"></div>
+                <div class="category-name"><span class="name"></span><span class="category-amount">
+                    (
+                    <span class="minicart__totalizer--category-amount"></span>
+                    ítems)
+                  </span></div>
+              </div>
+            </div>
+            <div class="minicart__category-filters"></div>
+            <div class="minicart__products-wrapper">
+              <div class="minicart__products"></div><button type="button"
+                class="minicart__action minicart__action--show-filters btn"><span class="font-icn go-back"></span><span
+                  class="text">Volver</span></button>
+            </div>
+            <div class="minicart__totalizers">
+              <div class="minicart__totalizer minicart__totalizer--price">
+                <div class="text">Subtotal</div>
+                <div class="value"></div>
+              </div>
+            </div><a href="/cart" class="btn primary minicart__action minicart__action--buy"><span
+                class="font-icn cart"></span><span class="text">
+                Finalizar compra
+              </span></a>
+            <div class="minicart__free-shipping">
+              <div class="free-shipping-thermometer">
+                <div class="progress-wrapper">
+                  <div class="progress">
+                    <div class="bar"></div>
+                    <div class="foam"><img
+                        src="https://wongfood.vteximg.com.br/arquivos/espuma.png?v=636416890052070000" alt="" /></div>
+                    <div class="bubbles">
+                      <div class="bubble bubble-1"></div>
+                      <div class="bubble bubble-2"></div>
+                      <div class="bubble bubble-3"></div>
+                      <div class="bubble bubble-4"></div>
+                      <div class="bubble bubble-5"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="truck">
+                  <div class="font-icn arrow-termometro"></div>
+                  <div class="font-icn delivery-termometro"></div>
+                </div>
+                <div class="truck-bg"></div>
+                <div class="background"><svg class="thermometer desktop" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="240.342px" height="44.975px" viewBox="0 0 240.342 44.975" xml:space="preserve">
+                    <g id="Layer_1">
+                      <path style="fill:#D1D1D1;"
+                        d="M217.853,44.975c-8.932,0-16.946-5.23-20.556-13.367H9.185C4.12,31.607,0,27.486,0,22.422                                                                        s4.12-9.186,9.185-9.186h188.169C200.992,5.179,208.983,0,217.853,0c12.4,0,22.489,10.088,22.489,22.488                                                                        C240.342,34.888,230.253,44.975,217.853,44.975z M9.185,14.736c-4.237,0-7.685,3.447-7.685,7.686s3.447,7.686,7.685,7.686H198.29                                                                        l0.192,0.461c3.274,7.84,10.878,12.906,19.37,12.906c11.573,0,20.989-9.414,20.989-20.986c0-11.573-9.416-20.988-20.989-20.988                                                                        c-8.433,0-16.016,5.017-19.318,12.78l-0.194,0.456H9.185z" />
+                      <g>
+                        <path style="fill:#FFFFFF;"
+                          d="M197.297,31.607H9.185C4.12,31.607,0,27.486,0,22.422v22.553h217.853                                                                            C208.921,44.975,200.906,39.744,197.297,31.607z" />
+                        <path style="fill:#FFFFFF;"
+                          d="M217.853,44.975h22.489V22.488C240.342,34.888,230.253,44.975,217.853,44.975z" />
+                        <path style="fill:#FFFFFF;"
+                          d="M9.185,13.236h188.169C200.992,5.179,208.983,0,217.853,0H0v22.422                                                                            C0,17.357,4.12,13.236,9.185,13.236z" />
+                        <path style="fill:#FFFFFF;" d="M217.853,0c12.4,0,22.489,10.088,22.489,22.488V0H217.853z" />
+                      </g>
+                    </g>
+                  </svg><svg class="thermometer mobile" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 480 80"
+                    enable-background="new 0 0 480 80" xml:space="preserve">
+                    <g id="Layer_1">
+                      <g>
+                        <g>
+                          <g>
+                            <defs>
+                              <rect id="SVGID_36_" x="-111.34" y="-372.71" width="319.054" height="95.646" />
+                            </defs>
+                            <clipPath id="SVGID_1_">
+                              <use xlink:href="#SVGID_36_" overflow="visible" />
+                            </clipPath>
+                            <g clip-path="url(#SVGID_1_)">
+                              <g>
+                                <defs>
+                                  <rect id="SVGID_38_" x="-181.775" y="-380.8" width="391.177" height="247.542" />
+                                </defs>
+                                <clipPath id="SVGID_2_">
+                                  <use xlink:href="#SVGID_38_" overflow="visible" />
+                                </clipPath>
+                                <g id="jPzeJz_7_" clip-path="url(#SVGID_2_)">
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                      <path fill="#D1D1D1"
+                        d="M438.572,73.731c-13.398,0-25.419-7.845-30.834-20.051H23.763c-7.597,0-13.777-6.181-13.777-13.778                                                                 s6.18-13.778,13.777-13.778h384.061c5.457-12.086,17.445-19.854,30.748-19.854c18.601,0,33.734,15.132,33.734,33.732                                                                 C472.306,58.6,457.173,73.731,438.572,73.731z M23.763,28.374c-6.356,0-11.527,5.171-11.527,11.528S17.407,51.43,23.763,51.43                                                                 h385.464l0.289,0.691c4.912,11.76,16.316,19.359,29.056,19.359c17.36,0,31.484-14.122,31.484-31.479                                                                 c0-17.359-14.124-31.482-31.484-31.482c-12.649,0-24.023,7.525-28.978,19.17l-0.291,0.685H23.763z" />
+                      <path fill="#FFFFFF"
+                        d="M0,0v80h480V0H0z M438.572,73.731c-13.398,0-25.419-7.845-30.834-20.051H23.763                                                                 c-7.597,0-13.777-6.181-13.777-13.778s6.18-13.778,13.777-13.778h384.061c5.457-12.086,17.445-19.854,30.748-19.854                                                                 c18.601,0,33.734,15.132,33.734,33.732C472.306,58.6,457.173,73.731,438.572,73.731z" />
+                    </g>
+                  </svg></div>
+              </div>
+              <div class="free-shipping-thermometer__shipping-text">
+                Faltan
+                <span class="value"></span>
+                para el Envío Gratis
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="minicart__footer">
+          <div class="minicart__info minicart__info--delivery">
+            <div class="font-icn delivery-big"></div>
+            <div class="text">
+              Envíos gratis en compras
+              <br />
+              superiores a
+              <span class="free-shipping-value"></span></div>
+          </div>
+          <div class="minicart__info">
+            <div class="font-icn security"></div>
+            <div class="text">Tu compra es 100% segura</div>
+          </div>
+          <div class="minicart__info">
+            <div class="font-icn bonus"></div>
+            <div class="text">Con todas tus compras acumulas puntos bonus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="js-menu-container" class="menu menu-food food-site">
+      <div class="headerMenuCategs"><span class="wicon wicon--blanco wicon-isowong"></span><span
+          class="headerMenuCategs__title">Categorías</span></div>
+    </div>
+  </div>
+  <nav class="navigation-mobile mobile header-mobile__content mobile">
+    <div class="navigation-mobile__main-content">
+      <div
+        class="navigation-mobile__item navigation-mobile__item--menu-food navigation-mobile__item--has-content food-site">
+        <div class="navigation-mobile__item-title navigation-mobile__item-title--has-content" data-content="menu-food">
+          <span class="text">CATEGORÍAS</span><span class="font-icn arrow-right-stroke"></span></div>
+      </div><a class="navigation-mobile__item" href="/">
+        <div class="navigation-mobile__item-title"><span class="icon-wrapper"><span
+              class="wicon wicon--gris wicon-ofertas"></span></span><span class="text">OFERTAS ESPECIALES</span></div>
+      </a><a class="navigation-mobile__item" href="/pedidos">
+        <div class="navigation-mobile__item-title"><span class="icon-wrapper">
+            <!-- <span class="font-icn my-account"></span> --><span
+              class="wicon wicon--gris wicon-pedidos"></span></span><span class="text">MIS PEDIDOS</span></div>
+      </a><a class="navigation-mobile__item" href="/pedidos">
+        <div class="navigation-mobile__item-title"><span class="icon-wrapper">
+            <!-- <span class="font-icn refresh-mobile"></span> --><span
+              class="wicon wicon--gris wicon-repetirPedido"></span></span><span class="text">REPETIR PEDIDO</span></div>
+      </a><a class="navigation-mobile__item" href="/account#/mis-listas">
+        <div class="navigation-mobile__item-title"><span class="icon-wrapper">
+            <!-- <span class="font-icn lists"></span> --><span class="wicon wicon--gris wicon-lista"></span></span><span
+            class="text">MIS LISTAS</span></div>
+      </a><a class="navigation-mobile__item food-site" href="/catalogos">
+        <div class="navigation-mobile__item-title"><span class="icon-wrapper">
+            <!-- <span class="font-icn recipes"></span> --><span
+              class="wicon wicon--gris wicon-encarte"></span></span><span class="text">ENCARTES</span></div>
+      </a>
+      <div class="navigation-mobile__active-store">
+        <div class="navigation-mobile__active-store-label" id="active-store-label-mobile"><span class="text">Tu tienda
+            es</span><span class="store-name" id="active-store-name-label-mobile"></span></div>
+        <div class="navigation-mobile__active-store-actions"><button type="button"
+            class="navigation-mobile__active-store-action navigation-mobile__active-store-action--change-store btn primary-border change-store"
+            data-overlay="store-locality">CAMBIAR CIUDAD</button><a href="/institucional/nuestras-tiendas"
+            class="navigation-mobile__active-store-action navigation-mobile__active-store-action--link-store btn second"><span
+              class="font-icn mapmarker"></span><span class="text">BUSCAR TIENDA</span></a></div>
+      </div>
+      <div class="shipping-preference__active-preference-mobile mobile"></div>
+    </div>
+    <div class="navigation-mobile__item-content menu-food food-site">
+      <div class="navigation-mobile__item-title navigation-mobile__item-title--active"><span
+          class="text">CATEGORÍAS</span><span class="font-icn go-back" data-content="menu-food"></span></div>
+      <div id="js-menu-container-mobile" class="menu-mobile menu-food"></div>
+    </div>
+  </nav>
+  <div class="search-mobile mobile header-mobile__content mobile">
+    <div class="search-mobile__tabs">
+      <div class="search-mobile__tab active" data-content="simple-search"><span class="font-icn search"></span><span
+          class="text">
+          BUSCAR POR
+          <br />
+          PALABRA CLAVE
+        </span></div>
+      <div class="search-mobile__tab" data-content="multiple-search"><span class="font-icn search-list"></span><span
+          class="text">
+          BUSCAR VARIOS
+          <br />
+          PRODUCTOS
+        </span></div>
+    </div>
+    <div class="search-mobile__content simple-search active">
+      <div class="search-autocomplete-mobile">
+        <div class="search-autocomplete-mobile__input-wrapper"><input type="text"
+            class="search-autocomplete-mobile__input" value="" placeholder="¿Qué producto necesitas?" />
+          <div class="search-autocomplete-mobile__clear font-icn cross"></div>
+        </div>
+        <div class="search-autocomplete-mobile__results-wrapper">
+          <div class="loader"><svg class="spinner-loader" width="60px" height="60px" viewBox="0 0 80 80">
+              <path class="spinner-loader-circlebg"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+              <path id="spinner-loader-circle" class="preload-loader-circle"
+                d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+            </svg></div>
+          <div class="search-autocomplete-mobile__results">
+            <div class="search-autocomplete-mobile__products clear-fix"></div><a href="/busca/"
+              class="search-autocomplete-mobile__see-all"><span>Ver todos los resultados</span></a>
+            <div class="search-autocomplete-mobile__categories"></div>
+          </div>
+          <div class="search-autocomplete-mobile__no-results"><span>No se han encontrado resultados</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="search-mobile__content multiple-search">
+      <div class="search-product-list">
+        <div class="search-product-list__title">
+          Escribe aquí tu lista de compras
+        </div>
+        <div class="search-product-list__subtitle">
+          Cliquea Enter después de cada item o sepáralos por comas (ej.: arroz,carne,huevos,azúcar).
+        </div>
+        <div class="search-product-list__input-wrapper">
+          <div class="search-product-list__list-items"></div><input type="text"
+            class="search-product-list__search-input" id="search-list-item-input" value="" size="1" />
+        </div>
+        <div class="search-product-list__controls"><button type="button"
+            class="search-product-list__control search-product-list__control--search btn red-border disabled">Buscar
+            productos</button><button type="button"
+            class="search-product-list__control search-product-list__control--reset disabled"><span
+              class="font-icn cross"></span><span class="text">Borrar todo</span></button></div>
+      </div>
+    </div>
+  </div>
+  <div class="minicart-mobile header-mobile__content mobile">
+    <div class="minicart minicart--navigation box-shadow-2" id="minicart-navigation">
+      <div class="minicart__alert">
+        <div class="minicart-alert minicart-alert--delivery-window-available"><button type="button"
+            class="minicart-alert__close-alert font-icn cross"></button>
+          <div class="font-icn time"></div>
+          <div class="minicart-alert__text-wrapper">
+            <div class="minicart-alert__text">
+              Termina tu pedido antes de
+              <span class="countdown"></span>
+              para recibir hoy entre las
+              <span class="time-range"></span>
+              *
+            </div>
+            <div class="minicart-alert__note">
+              *o hasta que se agoten los cupos
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="minicart__body">
+        <div class="minicart__empty">
+          <div class="minicart__empty-text">Tu carrito está vacío</div>
+        </div>
+        <div class="minicart__items-wrapper">
+          <div class="minicart__header-wrapper">
+            <div class="minicart__header minicart__header--total">
+              <div class="minicart__totalizer--amount">
+                Tienes
+                <span class="value"></span>
+                ítems
+              </div>
+              <div class="help">Clikea en una burbuja para ver el detalle</div>
+            </div>
+            <div class="minicart__header minicart__header--category">
+              <div class="font-icn-cat"></div>
+              <div class="category-name"><span class="name"></span><span class="category-amount">
+                  (
+                  <span class="minicart__totalizer--category-amount"></span>
+                  ítems)
+                </span></div>
+            </div>
+          </div>
+          <div class="minicart__category-filters"></div>
+          <div class="minicart__products-wrapper">
+            <div class="minicart__products"></div><button type="button"
+              class="minicart__action minicart__action--show-filters btn"><span class="font-icn go-back"></span><span
+                class="text">Volver</span></button>
+          </div>
+          <div class="minicart__totalizers">
+            <div class="minicart__totalizer minicart__totalizer--price">
+              <div class="text">Subtotal</div>
+              <div class="value"></div>
+            </div>
+          </div><a href="/cart" class="btn primary minicart__action minicart__action--buy"><span
+              class="font-icn cart"></span><span class="text">
+              Finalizar compra
+            </span></a>
+          <div class="minicart__free-shipping">
+            <div class="free-shipping-thermometer">
+              <div class="progress-wrapper">
+                <div class="progress">
+                  <div class="bar"></div>
+                  <div class="foam"><img src="https://wongfood.vteximg.com.br/arquivos/espuma.png?v=636416890052070000"
+                      alt="" /></div>
+                  <div class="bubbles">
+                    <div class="bubble bubble-1"></div>
+                    <div class="bubble bubble-2"></div>
+                    <div class="bubble bubble-3"></div>
+                    <div class="bubble bubble-4"></div>
+                    <div class="bubble bubble-5"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="truck">
+                <div class="font-icn arrow-termometro"></div>
+                <div class="font-icn delivery-termometro"></div>
+              </div>
+              <div class="truck-bg"></div>
+              <div class="background"><svg class="thermometer desktop" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="240.342px" height="44.975px"
+                  viewBox="0 0 240.342 44.975" xml:space="preserve">
+                  <g id="Layer_1">
+                    <path style="fill:#D1D1D1;"
+                      d="M217.853,44.975c-8.932,0-16.946-5.23-20.556-13.367H9.185C4.12,31.607,0,27.486,0,22.422                                                                    s4.12-9.186,9.185-9.186h188.169C200.992,5.179,208.983,0,217.853,0c12.4,0,22.489,10.088,22.489,22.488                                                                    C240.342,34.888,230.253,44.975,217.853,44.975z M9.185,14.736c-4.237,0-7.685,3.447-7.685,7.686s3.447,7.686,7.685,7.686H198.29                                                                    l0.192,0.461c3.274,7.84,10.878,12.906,19.37,12.906c11.573,0,20.989-9.414,20.989-20.986c0-11.573-9.416-20.988-20.989-20.988                                                                    c-8.433,0-16.016,5.017-19.318,12.78l-0.194,0.456H9.185z" />
+                    <g>
+                      <path style="fill:#FFFFFF;"
+                        d="M197.297,31.607H9.185C4.12,31.607,0,27.486,0,22.422v22.553h217.853                                                                        C208.921,44.975,200.906,39.744,197.297,31.607z" />
+                      <path style="fill:#FFFFFF;"
+                        d="M217.853,44.975h22.489V22.488C240.342,34.888,230.253,44.975,217.853,44.975z" />
+                      <path style="fill:#FFFFFF;"
+                        d="M9.185,13.236h188.169C200.992,5.179,208.983,0,217.853,0H0v22.422                                                                        C0,17.357,4.12,13.236,9.185,13.236z" />
+                      <path style="fill:#FFFFFF;" d="M217.853,0c12.4,0,22.489,10.088,22.489,22.488V0H217.853z" />
+                    </g>
+                  </g>
+                </svg><svg class="thermometer mobile" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 480 80"
+                  enable-background="new 0 0 480 80" xml:space="preserve">
+                  <g id="Layer_1">
+                    <g>
+                      <g>
+                        <g>
+                          <defs>
+                            <rect id="SVGID_36_" x="-111.34" y="-372.71" width="319.054" height="95.646" />
+                          </defs>
+                          <clipPath id="SVGID_1_">
+                            <use xlink:href="#SVGID_36_" overflow="visible" />
+                          </clipPath>
+                          <g clip-path="url(#SVGID_1_)">
+                            <g>
+                              <defs>
+                                <rect id="SVGID_38_" x="-181.775" y="-380.8" width="391.177" height="247.542" />
+                              </defs>
+                              <clipPath id="SVGID_2_">
+                                <use xlink:href="#SVGID_38_" overflow="visible" />
+                              </clipPath>
+                              <g id="jPzeJz_7_" clip-path="url(#SVGID_2_)">
+                                <!-- <image overflow="visible" width="473" height="630" id="jPzeJz_8_" xlink:href="D65EE6D7985BBA0D.jpg" transform="matrix(-0.9168 0 0 0.9168 214.2698 -562.0624)">
+                                                            </image> -->
+                              </g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <path fill="#D1D1D1"
+                      d="M438.572,73.731c-13.398,0-25.419-7.845-30.834-20.051H23.763c-7.597,0-13.777-6.181-13.777-13.778                                                             s6.18-13.778,13.777-13.778h384.061c5.457-12.086,17.445-19.854,30.748-19.854c18.601,0,33.734,15.132,33.734,33.732                                                             C472.306,58.6,457.173,73.731,438.572,73.731z M23.763,28.374c-6.356,0-11.527,5.171-11.527,11.528S17.407,51.43,23.763,51.43                                                             h385.464l0.289,0.691c4.912,11.76,16.316,19.359,29.056,19.359c17.36,0,31.484-14.122,31.484-31.479                                                             c0-17.359-14.124-31.482-31.484-31.482c-12.649,0-24.023,7.525-28.978,19.17l-0.291,0.685H23.763z" />
+                    <path fill="#FFFFFF"
+                      d="M0,0v80h480V0H0z M438.572,73.731c-13.398,0-25.419-7.845-30.834-20.051H23.763                                                             c-7.597,0-13.777-6.181-13.777-13.778s6.18-13.778,13.777-13.778h384.061c5.457-12.086,17.445-19.854,30.748-19.854                                                             c18.601,0,33.734,15.132,33.734,33.732C472.306,58.6,457.173,73.731,438.572,73.731z" />
+                  </g>
+                </svg></div>
+            </div>
+            <div class="free-shipping-thermometer__shipping-text">
+              Faltan
+              <span class="value"></span>
+              para el Envío Gratis
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="minicart__footer">
+        <div class="minicart__info minicart__info--delivery">
+          <div class="font-icn delivery-big"></div>
+          <div class="text">
+            Envíos gratis en compras
+            <br />
+            superiores a
+            <span class="free-shipping-value"></span></div>
+        </div>
+        <div class="minicart__info">
+          <div class="font-icn security"></div>
+          <div class="text">Tu compra es 100% segura</div>
+        </div>
+        <div class="minicart__info">
+          <div class="font-icn bonus"></div>
+          <div class="text">Con todas tus compras acumulas puntos bonus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    ; (function () {
+      // Set height of fake header
+      var fakeNavigation = $('#fake-navigation')
+      var navigation = $('.navigation')
+
+      fakeNavigation.height(navigation.height())
+
+      //on resize change height
+      $(window).on('resolutionChanged', function () {
+        fakeNavigation.height(navigation.height())
+      })
+    })()
+  </script><!-- /Navigation -->
+  <!-- Content -->
+  <div id="root" class="wrapper institutional store contact center">
+    <div class="wrapper bread-crumb">
+      <div>
+        <div class="bread-crumb">
+          <ul>
+            <li><a href="/">Wong</a></li>
+            <li class="last">
+              Consultas y Sugerencias
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="menu-inst">
+        <div class="title-menu">
+          CONTÁCTANOS
+        </div>
+      </div>
+      <div class="title">
+        <h2>Consultas y Sugerencias</h2>
+      </div>
+      <div class="content-wrapper">
+        <div class="contact-section-toggle-wrapper mobile"><button class="contact-toggle contact-toggle--form active"
+            data-content="suggestions-form-wrapper"><span class="font-icn identity"></span><span class="text">
+              Realiza tu
+              <br />
+              consulta
+            </span></button><button class="contact-toggle contact-toggle--phone" data-content="our-phones"><span
+              class="font-icn phone-header"></span><span class="text">
+              Nuestros
+              <br />
+              teléfonos
+            </span></button></div>
+        <div class="suggestions-form-wrapper">
+          <div class="contact-title">
+            <h3><span class="font-icn identity"></span>
+              Contáctanos
+            </h3>
+          </div>
+          <p class="description">Tu opinión es muy importante para nosotros.</p>
+          <p class="required-field">(*) Datos Obligatorios</p>
+          <form id="contact-suggestions" class="contact-form" method="post">
+            <div class="input-wrapper input-wrapper--contactwith full-width radio"><span class="label-text">Quieres
+                contactarte con:</span><input type="radio" id="site" value="Wong.pe" name="contactwith"
+                checked="checked" /><label for="site"><span></span>
+                Wong.pe
+              </label><input type="radio" id="store" value="Tienda" name="contactwith" /><label
+                for="store"><span></span>
+                Tienda.
+              </label></div>
+            <div class="input-wrapper input-wrapper--contactwithstore hidden"><label><select id="contactwithstore"
+                  name="contactwithstore">
+                  <option></option>
+                  <option value="T101">Wong Dos de Mayo</option>
+                  <option value="T102">Wong Óvalo Gutierrez</option>
+                  <option value="T103">Wong Aurora</option>
+                  <option value="T104">Wong Benavides</option>
+                  <option value="T106">Wong Chacarilla</option>
+                  <option value="T107">Wong San Borja</option>
+                  <option value="T108">Wong La Molina</option>
+                  <option value="T109">Wong San Miguel</option>
+                  <option value="T111">Wong Camacho</option>
+                  <option value="T114">Wong La Planicie</option>
+                  <option value="T115">Wong Aldava</option>
+                  <option value="T116">Wong Asia</option>
+                  <option value="T120">Wong Bajada Balta</option>
+                  <option value="T121">Wong Marsano</option>
+                  <option value="T126">Wong Larcomar</option>
+                  <option value="TH02">Hipermercado Wong Ate</option>
+                  <option value="T130">Wong Sol De La Molina</option>
+                  <option value="T117">Wong California</option>
+                  <option value="T118">Wong Larco</option>
+                  <option value="T131">Wong Panorama</option>
+                </select></label><span class="select2-container"></span></div>
+            <div class="input-wrapper input-wrapper--inquiryselect full-width clear"><label><span
+                  class="label-text">Motivo de contacto*</span><select id="inquiryselect" name="inquiryselect">
+                  <option></option>
+                  <option value="Sugerencia">Sugerencia</option>
+                  <option value="Consulta">Consulta</option>
+                  <option value="Felicitaciones">Felicitaciones</option>
+                </select></label><span class="select2-container"></span></div>
+            <div class="input-wrapper input-wrapper--districtselect full-width clear"><label><span
+                  class="label-text">Elija su distrito de despacho</span><select name="searchdistrict"
+                  id="searchdistrict"></select></label><span class="select2-container"></span></div>
+            <div class="input-wrapper input-wrapper--firstname clear"><label><span
+                  class="label-text">Nombres*</span><input type="text" name="firstname" id="firstname" /></label></div>
+            <div class="input-wrapper input-wrapper--lastname"><label><span class="label-text">Apellidos*</span><input
+                  type="text" name="lastname" id="lastname" /></label></div>
+            <div class="input-wrapper input-wrapper--idselect"><label><span class="label-text">Tipo de
+                  Documento*</span><select id="idselect" name="idselect">
+                  <option value="DNI">DNI</option>
+                  <option value="Pasaporte">Pasaporte</option>
+                  <option value="Carnet">Carnet</option>
+                  <option value="RUC">RUC</option>
+                </select></label></div>
+            <div class="input-wrapper input-wrapper--identification"><label><span
+                  class="label-text">Documento*</span><input type="text" name="identification"
+                  id="identification" /></label></div>
+            <div class="input-wrapper input-wrapper--email full-width"><label><span class="label-text">Correo
+                  electrónico*</span><input type="email" name="contactemail" id="contactemail" /></label></div>
+            <div class="input-wrapper input-wrapper--email full-width"><label><span class="label-text">Confirmar Correo
+                  electrónico*</span><input type="email" name="confirmemail" id="confirmemail" /></label></div>
+            <div class="input-wrapper input-wrapper--phone"><label><span class="label-text">Teléfono*</span><input
+                  type="tel" name="phone" id="phone" /></label></div>
+            <div class="input-wrapper input-wrapper--cellphone"><label><span class="label-text">Celular</span><input
+                  type="tel" name="cellphone" id="cellphone" /></label></div>
+            <div class="input-wrapper input-wrapper--message full-width clear"><label><span
+                  class="label-text">Comentarios*</span><textarea name="message" id="message"></textarea></label></div>
+            <div class="human-check clear">
+              <div class="input-wrapper"><label class="label-text" for="human-input">Escribe las letras del
+                  recuadro*</label>
+                <div class="code" id="code"></div><input type="text" name="humaninput" id="humaninput" maxlength="8" />
+              </div>
+            </div><input type="submit" class="button submit clear" value="Enviar" />
+          </form>
+          <div class="message-success">
+            <div class="box"><span class="font-icn form-brillos"></span>
+              <h3>¡Listo!</h3>
+              <p>Seguiremos mejorando nuestros servicios en beneficio de nuestros clientes.</p><button class="button"><a
+                  href="https://www.wong.pe/">VOLVER A PÁGINA PRINCIPAL</a></button>
+            </div>
+          </div>
+        </div>
+        <div class="our-phones">
+          <div class="chats-consult">
+            <div class="section chat-consult">
+              <div class="contact-title ">
+                <h3><span class="font-icn chat-header"></span>
+                  Nuestro Chat
+                </h3>
+              </div>
+              <h3>Comunícate por el chat con Anita</h3>
+              <p class="phone">Preguntale todas tus inquietudes y más</p>
+              <p style="margin-bottom:10px;"><span class="sbold" style="color:#525252;">
+                  Conócela
+                  <a href="/anita">aquí</a></span></p>
+              <p class="times"><span class="sbold">Horario de atención:</span><br />
+                Las 24 Horas del día
+              </p>
+            </div>
+          </div>
+          <div class="phones-consult">
+            <div class="section">
+              <div class="contact-title">
+                <h3><span class="font-icn phone-header"></span>
+                  Nuestros Teléfonos
+                </h3>
+              </div>
+              <h3>Oficinas Principales:</h3>
+              <p class="phone"><span class="font-icn phone-footer"></span>
+                (511) 613 8888
+              </p>
+              <p class="times"><span class="sbold">Horario de atención:</span><br />
+                Lunes a Viernes de 08:30 am - 06:15 pm
+              </p>
+            </div>
+            <div class="section">
+              <h3>Central de Tiendas:</h3>
+              <p class="phone"><span class="font-icn phone-footer"></span>
+                (511) 625 0000
+              </p>
+              <p class="times">
+                Puede comunicarse con nuestras tiendas marcando el anexo correspondiente.
+                <br />
+                Para conocer los anexos de nuestras tiendas, haga click
+                <a href="https://www.wong.pe/institucional/nuestras-tiendas">aquí</a>
+                .
+              </p>
+            </div>
+            <div class="section">
+              <h3>Call Center:</h3>
+              <p class="phone"><span class="font-icn phone-footer"></span>
+                (511) 613 8888
+              </p>
+              <p class="times"><span class="sbold">Horario de atención:</span><br />
+                Lunes a Viernes de 08:30 am a 09:00 pm (inclusive feriados, excepto Navidad, Año Nuevo y 1º de Mayo).
+              </p>
+              <p class="times"><span class="sbold">Nuestro Call Center cuenta con 4 opciones para brindarle una mejor
+                  asistencia:</span></p>
+              <ul class="collapsable-list">
+                <li class="rounded">
+                  <p class="question"><span class="index">1</span><span class="question-text sbold">Marque 1 - Wong
+                      Online</span><span class="font-icn plus"></span></p>
+                  <div class="answer">
+                    <p>Nuestros Asesores de Servicio tomarán su pedido y lo guiarán en su compra. Esta opción le
+                      permitirá, también, acceder a la información necesaria para realizar su compra, en caso sea la
+                      primera vez que realiza un pedido, así como conocer el estado del mismo. Además, le permitirá
+                      estar al tanto de las novedades y promociones que tenemos para usted.</p>
+                  </div>
+                </li>
+                <li class="rounded">
+                  <p class="question"><span class="index">2</span><span class="question-text sbold">Marque 2 -
+                      Teleticket</span><span class="font-icn plus"></span></p>
+                  <div class="answer">
+                    <p>Le brindamos la mejor información de nuestros eventos, disponibles en los módulos de venta de
+                      nuestras tiendas.</p>
+                  </div>
+                </li>
+                <li class="rounded">
+                  <p class="question"><span class="index">3</span><span class="question-text sbold">Marque 3 - Atención
+                      al Cliente</span><span class="font-icn plus"></span></p>
+                  <div class="answer">
+                    <p>Estamos a su disposición para cualquier sugerencia o comentario que nos ayude a mejorar.</p>
+                  </div>
+                </li>
+                <li class="rounded">
+                  <p class="question"><span class="index">4</span><span class="question-text sbold">Marque 4 - Bloqueo
+                      de Vales</span><span class="font-icn plus"></span></p>
+                  <div class="answer">
+                    <p>Esta opción le permitirá bloquear sus vales electrónicos y vales plus de alimentos, en caso de
+                      pérdida o robo, y gestionar la emisión de uno nuevo.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /Content -->
+  <!-- Footer -->
+  <div class="wrapper prefooter">
+    <div class="center">
+      <!-- newsletter aquí --><a href="/compra-en-wong-pe" class="col link">
+        <div class="icn-wrapper">
+          <div class="wicon--m wicon--gris wicon-interrogacion"></div>
+        </div>
+        <div class="text-wrapper">
+          <div class="title">Cómo Comprar</div>
+          <div class="text">
+            Si tienes alguna duda
+            <br />
+            ingresa aquí
+          </div>
+        </div>
+      </a><a href="/institucional/nuestras-tiendas" class="col link store">
+        <div class="icn-wrapper">
+          <div class="wicon--m wicon--gris wicon-tienda"></div>
+        </div>
+        <div class="text-wrapper">
+          <div class="title">Nuestras Tiendas</div>
+          <div class="text">
+            Conoce tu tienda más
+            <br />
+            cercana
+          </div>
+        </div>
+      </a><a href="/Institucional/servicios-de-entrega" class="col link shipping">
+        <div class="icn-wrapper">
+          <div class="wicon--m wicon--gris wicon-camion"></div>
+        </div>
+        <div class="text-wrapper">
+          <div class="title">Servicios de Entrega</div>
+          <div class="text">
+            Conoce nuestros
+            <br />
+            métodos de envío
+          </div>
+        </div>
+      </a><a href="/institucional/medios-de-pago" class="col link payment">
+        <div class="icn-wrapper">
+          <div class="wicon--m wicon--gris wicon-tarjeta"></div>
+        </div>
+        <div class="text-wrapper">
+          <div class="title">Medios de Pago</div>
+          <div class="text">
+            Conoce nuestros
+            <br />
+            medios de pago
+          </div>
+        </div>
+      </a></div>
+  </div>
+  <footer id="footer" class="wrapper">
+    <div class="center">
+      <div class="footer-navigation-wrapper">
+        <div class="store-info">
+          <a href="/" class="logo"><span class="wicon wicon--grisFooter wicon-wongNegative"></span></a>
+          <div class="col">
+            <div class="phone desktop"><a href="tel:+5116138888" class="text"><span
+                  class="wicon--m wicon-callcenter"></span>
+                <p class="title">Ayuda Callcenter</p><span>(511) 613 8888</span>
+              </a></div>
+            <div class="social-links">
+              <p class="title">Síguenos:</p><a href="https://www.facebook.com/WongOficial" class="facebook"
+                target="_blank"><span class="wicon wicon--grisFooter wicon-facebook"></span></a><a
+                href="https://twitter.com/WongPeru" class="twitter" target="_blank"><span
+                  class="wicon wicon--grisFooter wicon-twitter"></span></a><a
+                href="https://www.youtube.com/user/WongOficial" class="youtube" target="_blank"><span
+                  class="wicon wicon--grisFooter wicon-youtube"></span></a><a
+                href="https://www.instagram.com/wongperu/?hl=es-la" class="instagram" target="_blank"><span
+                  class="wicon wicon--grisFooter wicon-instagram"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="links-wrapper">
+          <div class="col">
+            <div class="title">
+              Nosotros
+              <span class="mobile font-icn arrow-down"></span></div>
+            <div class="links">
+              <a href="/Institucional/cencosud" class="link">¿Qué es Cencosud?</a>
+              <a href="http://cencosud.bumeran.com.pe/" target="_blank" class="link">Trabaja con Nosotros</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="title">
+              Tienda Online
+              <span class="mobile font-icn arrow-down"></span></div>
+            <div class="links"><a href="/institucional/beneficios" class="link">Beneficios</a><a href="/legales"
+                class="link">Legales</a><a href="/catalogos/" class="link">Catálogos</a><a
+                href="/institucional/preguntas-frecuentes" class="link">Preguntas Frecuentes</a><a
+                href="https://asp401r.paperless.com.pe/BoletaWong/" target="_blank" class="link">Revisa tu boleta</a><a
+                href="/institucional/terminos-y-condiciones" class="link">Términos y Condiciones</a><a
+                href="/institucional/politicas-privacidad-seguridad" class="link">Políticas de Privacidad y
+                Seguridad</a>
+            </div>
+          </div>
+          <div class="col">
+            <div class="title">
+              Contáctanos
+              <span class="mobile font-icn arrow-down"></span></div>
+            <div class="links"><a href="/institucional/nuestras-tiendas" class="link">Nuestras Tiendas</a><a
+                href="/consultas-sugerencias" class="link">Consultas y Sugerencias</a><a
+                href="https://drive.google.com/file/d/1ZyYzUB-rX0UqAEe-8tPNNj-hc4HpIgcK/view?usp=sharing"
+                download="Código de Ética" class="link">Código de Ética</a>
+                <a href="http://librorec.wong.pe/frmLRRegistro.aspx?str=3BKtK2xvWYWSxvdof6l8RIr7pMdFoEtjONBoYoTABIU%3d"
+                class="link with-icon" target="_blank"><span class="wicon wicon--grisFooter wicon-libro"></span>
+                Libro de
+                <br />
+                Reclamaciones
+              </a></div>
+          </div>
+        </div>
+      </div>
+      <div class="legal-note">
+        <div class="text">
+          COMPRAS 100% SEGURAS
+          <br />
+          Esta tienda está autorizada por Visa para realizar transacciones electrónicas.
+          <br />
+          © 2017 Wong, Lima - Perú
+        </div>
+      </div>
+    </div>
+    <div class="scroll-to-top font-icn arrow-up"></div>
+    <div class="shipping-preference__portal-place"></div>
+  </footer>
+  <div class="destacado-box-similar"></div>
+  <div class="js-similar-box">
+    <div class="wrapper-similar">
+      <h4>Tenemos estos productos para ti</h4>
+      <div class="vtexito-product-popup">
+        <div class="cont-inservible-vtex"></div>
+      </div><button type="button" class="modal-address__close simple-close font-icn cross"></button>
+    </div>
+  </div>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,300,600,700" rel="stylesheet"
+    type="text/css" />
+  <link rel="stylesheet" type="text/css" href="https://www.wong.pe/files/mprogress.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.wong.pe/files/font-face.css" />
+  <link rel="stylesheet" href="https://www.wong.pe/files/overlay-shipping-preference.css" />
+  <script src="https://www.wong.pe/files/jquery.menu-aim.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/jquery.mobile.custom.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/jquery.adaptive-backgrounds.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://www.wong.pe/files/wfd.global.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"
+    type="text/javascript" charset="utf-8"></script>
+  <script language="javascript" src="https://wongfood.vteximg.com.br/scripts/track.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+  <script language="javascript" src="https://wongfood.vteximg.com.br/scripts/thickbox.js?v=1.4.1573.2263"
+    type="text/javascript"></script>
+</body>
+</html>
